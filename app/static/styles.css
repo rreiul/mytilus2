@@ -2,14 +2,151 @@ body {
     margin: 0;
     background-color: #14181E;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    display: flex;
+    align-items: center; /* Centra verticalmente en la página */
+    height: 100vh; /* Establece la altura del cuerpo al 100% del viewport */
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
-    background-color: #333333;
+    background-color: #222832;
     color: #fff;
-    height: 50px;
-    place-items: center;
-    justify-content: space-between;
+    height: 60px;
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    justify-content: center;
 }
 
+.header-container {
+    width: 1500px;
+    height: 60px;
+    background-color: #fff;
+    background-color: #222832;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-titulo {
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self: flex-start;
+}
+
+.container-body { 
+    display: flex;
+    flex-direction: column;
+    width: 1500px;
+    align-items: center;
+    flex: 1;
+}
+
+.leyenda { 
+    align-self: center;
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    height: 200px;
+    padding: 0px;
+}
+
+footer {
+    background-color:#222832;
+    color: #fff;
+    height: 70px;
+    min-height: 70px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.container-footer { 
+    display: flex;
+    width: 1500px;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.leyenda-texto {
+    justify-content: center;
+    align-items: center;
+}
+
+.rojo-texto {
+    color: red;
+    font-size: 20px;
+    padding: 0%;
+    margin-bottom: 0px;
+    display: flex;
+    font-weight: 600;
+}
+.naranja-texto {
+    color: orange;
+    font-size: 20px;
+    padding: 0%;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}
+.amarillo-texto {
+    color: yellow;
+    font-size: 20px;
+    padding: 0%;
+    margin-bottom: 0px;
+    display: flex;
+    font-weight: 600;
+}
+.verde-texto {
+    color: green;
+    font-size: 20px;
+    padding: 0%;
+    margin-bottom: 0px;
+    display: flex;
+    font-weight: 600;
+}
+.azul-texto {
+    color: blue;
+    font-size: 20px;
+    padding: 0%;
+    margin-bottom: 0px;
+    display: flex;
+    font-weight: 600;
+}
+.blanco-texto {
+    color: white;
+    font-size: 20px;
+    padding: 0%;
+    margin-bottom: 0px;
+    display: flex;
+    font-weight: 600;
+}
+
+.leyenda-div {
+    align-items: center;
+    justify-content: start;
+    display: flex;
+    flex-direction: column;
+}
+
+.texto-descripcion {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 5px;
+}
+
+.nav { 
+    display: flex;
+    margin: 20px;
+    
+}

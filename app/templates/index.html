@@ -1,13 +1,118 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
-</head>
-<body>
-    <h1>Gráfico generado con matplotlib</h1>
-    <img src="data:image/png;base64,{{ image }}" alt="Gráfico generado">
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flask App</title>
+        <link rel="stylesheet" href="../static/styles.css">
+    </head>
+    <body>
+        <header>
+            <div class="header-container">
+                <div class="logo">MiLogo</div>
+                <nav class="nav">
+                    <a href="#item1">Predicción</a>
+                    <a href="#item2">Estado zonas</a>
+                    <a href="#item3">Información</a>
+                </nav>
+                <div class="buttons">
+                    <a href="https://github.com" target="_blank"
+                        class="github">GitHub</a>
+                    <a href="https://linkedin.com" target="_blank"
+                        class="linkedin">LinkedIn</a>
+                </div>
+            </div>
+        </header>
+        <div class="container-body">
+            <div class="container-titulo">
+                <h2 class="mb-4">Predicción de los próximos 3 meses</h2>
+                <form>
+                    <div class="form-group">
+                        <select class="form-control" id="imagenSelect">
+                            <option value="prediccion.png">Cangas B</option>
+                            <option value="prueba.png">Prueba</option>
+                            <option value="imagen3.jpg">Imagen 3</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-5">
+                <img src="{{ url_for('static', filename='prediccion.png') }}"
+                    class="img-fluid" id="imagenMostrada">
+            </div>
+
+            <div class="leyenda">
+                <div class="leyenda-div">
+                    <p class="rojo-texto">
+                        Rojo
+                    </p>
+                    <p class="texto-descripcion">
+                        80% al 100% de estar cerrado
+                    </p>
+                </div>
+                <div class="leyenda-div">
+                    <p class="naranja-texto">
+                        Naranja
+                    </p>
+                    <p class="texto-descripcion">
+                        60% al 80% de estar cerrado
+                    </p>
+                </div>
+                <div class="leyenda-div">
+                    <p class="amarillo-texto">
+                        Amarillo
+                    </p>
+                    <p class="texto-descripcion">
+                        40% al 60% de estar cerrado
+                    </p>
+                </div>
+                <div class="leyenda-div">
+                    <p class="verde-texto">
+                        Verde
+                    </p>
+                    <p class="texto-descripcion">
+                        20% al 40% de estar cerrado
+                    </p>
+                </div>
+                <div class="leyenda-div">
+                    <p class="azul-texto">
+                        Azul
+                    </p>
+                    <p class="texto-descripcion">
+                        0% al 20% de estar cerrado
+                    </p>
+                </div>
+                <div class="leyenda-div">
+                    <p class="blanco-texto">
+                        Blanco
+                    </p>
+                    <p class="texto-descripcion">
+                        Probabilidad exacta de estar cerrado
+                    </p>
+                </div>
+            </div>
+            <script>
+                const selectImagen = document.getElementById('imagenSelect');
+                const imagenMostrada = document.getElementById('imagenMostrada');
+                    
+                selectImagen.addEventListener('change', function() {
+                    const selectedImage = selectImagen.value;
+                    imagenMostrada.src = `{{ url_for('static', filename='') }}${selectedImage}`;
+                });
+            </script>
+        </div>
+        <footer>
+            <div class="container-footer">
+                <p>
+                    Sitio desarrollado por Raúl Marcelino Docío.
+
+                </p>
+                <p>
+                    &copy; 2024 Mytilus. Todos los derechos reservados.
+                </p>
+            </div>
+        </footer>
+    </body>
 </html>
