@@ -5,22 +5,20 @@ from datetime import datetime, timedelta, date
 import os
 import io
 
-# URL de la página a scrapear
+
 url = 'http://www.intecmar.gal/Informacion/biotoxinas/Evolucion/CierresBatea.aspx'
 
-# Realizar la solicitud GET a la URL
+
 response = requests.get(url)
 
-# Verificar que la solicitud fue exitosa (código 200)
+
 if response.status_code == 200:
-    # Parsear el contenido HTML con BeautifulSoup
+
     soup = BeautifulSoup(response.content, 'html.parser')
     
-    # Encontrar la tabla por su ID (puedes inspeccionar el HTML para obtener el ID correcto)
     table = soup.find('table', {'id': 'ctl00_Contenido_GridView2'})
     
     if table:
-        # Extraer los datos de la tabla y convertirlos a un DataFrame de pandas
         df_hoy = pd.read_html(str(table))[0]
                 
         df_hoy = df_hoy.rename(columns={'Xan': '1', 'Feb': '2', 'Mar': '3', 'Abr': '4', 'Mai': '5', 'Xun': '6', 'Xull': '7', 'Ago': '8', 'Set': '9', 'Out': '10', 'Nov': '11', 'Dec': '12'})
