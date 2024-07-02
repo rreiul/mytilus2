@@ -102,16 +102,16 @@ for column in df.columns:
     png = os.path.join(os.path.dirname(__file__), 'static', 'prediccion_' + column + '.png')
     plt.savefig(png, transparent=True, bbox_inches='tight', dpi=94)
 
-    plt.rcParams['font.family'] = 'Segoe UI'
-    plt.style.use('dark_background')
-    fig, ax = plt.subplots(figsize=(20,6))
-    white_patch = Patch(color='white', label='Probabilidad predecida exacta de que este cerrado')
+   #plt.rcParams['font.family'] = 'Segoe UI'
+   #plt.style.use('dark_background')
+   #fig, ax = plt.subplots(figsize=(20,6))
+   #white_patch = Patch(color='white', label='Probabilidad predecida exacta de que este cerrado')
 
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5,1.1), handles=[white_patch], ncol=1)
-    ax.set_facecolor('#14181E')
-    ax.plot(forecast['ds'], forecast['yhat'],  linestyle='-', color='w')
-    png = os.path.join(os.path.dirname(__file__), 'static', 'curva_' + column + '.png')
-    plt.savefig(png, transparent=True, bbox_inches='tight', dpi=94)
+   #ax.legend(loc='upper center', bbox_to_anchor=(0.5,1.1), handles=[white_patch], ncol=1)
+   #ax.set_facecolor('#14181E')
+   #ax.plot(forecast['ds'], forecast['yhat'],  linestyle='-', color='w')
+   #png = os.path.join(os.path.dirname(__file__), 'static', 'curva_' + column + '.png')
+   #plt.savefig(png, transparent=True, bbox_inches='tight', dpi=94)
 
     csv = os.path.join(os.path.dirname(__file__), 'data', 'porcentajes_rangofechas.csv')
     df_porcentaje_rangos = pd.read_csv(csv)
