@@ -38,7 +38,7 @@ for column in df.columns:
     
     df2 = df[['dia', column]]
 
-    if df2[column].isna().all():
+    if df2[column].isna().any():
         continue
         
     df2 = df2.rename(columns={'dia': 'ds', column: 'y'})
@@ -100,7 +100,7 @@ for column in df.columns:
             ax.axvspan(date, date + pd.Timedelta(days=1), color=color, alpha=1)
 
     png = os.path.join(os.path.dirname(__file__), 'static', 'prediccion_' + column + '.png')
-    plt.savefig(png, transparent=True, bbox_inches='tight', dpi=94)
+    plt.savefig(png, transparent=True, bbox_inches='tight', dpi=150)
 
    #plt.rcParams['font.family'] = 'Segoe UI'
    #plt.style.use('dark_background')

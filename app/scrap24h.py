@@ -43,42 +43,41 @@ if response.status_code == 200:
 
         existe_valor = (df2['dia'] == ayer_fecha).any()
 
-        match hoy.weekday():
-            case 0:
-                print('Hoy es lunes, por lo que no se actualizan los datos.')
-            case 6:
-                if not (df2['dia'] == hoy_fecha).any():
-                    ultima_fila = df2.iloc[-1]
-                    nueva_fila = ultima_fila.copy()
-                    nueva_fila['dia'] = hoy - timedelta(1)
-                    df2.loc[len(df2)] = nueva_fila
-                    nueva_fila['dia'] = hoy
-                    df2.loc[len(df2)] = nueva_fila
-                else:
-                    print('Ya se ha ejecutado el script hoy.')
-            case 1,2,3,4,5:
-                if not existe_valor:
-                    for index, row_ayer in df_ayer.iterrows():
-                        polig = row_ayer['Poligono']
-                        df_hoy_poligono = df_hoy[df_hoy['Polígono'] == polig]
-                        v_hoy = df_hoy_poligono.iloc[0]
-                        df_ayer_poligono = df_ayer[df_ayer['Polígono'] == polig]
-                        v_ayer = df_ayer_poligono[mes].iloc[0]
-                        v_hoy = int(v_hoy)
-                        v_ayer = int(v_ayer)
-                        existe_valor = (df2['dia'] == ayer_fecha).any()
-                        if v_ayer != v_hoy:
-                            if existe_valor:
-                                df2.loc[df2['dia'] == ayer_fecha, polig] = '1'
-                            else:
-                                nueva_fila = {'dia': ayer_fecha, polig: '1'}
-                                df2.loc[len(df2)] = nueva_fila
+        if hoy.weekday() == 0:
+            print('Hoy es lunes, por lo que no se actualizan los datos.')
+        elif hoy.weekday() == 6:
+            if not (df2['dia'] == hoy_fecha).any():
+                ultima_fila = df2.iloc[-1]
+                nueva_fila = ultima_fila.copy()
+                nueva_fila['dia'] = hoy - timedelta(1)
+                df2.loc[len(df2)] = nueva_fila
+                nueva_fila['dia'] = hoy
+                df2.loc[len(df2)] = nueva_fila
+            else:
+                print('Ya se ha ejecutado el script hoy.')
+        elif hoy.weekday() in [1,2,3,4,5]:
+            if not existe_valor:
+                for index, row_ayer in df_ayer.iterrows():
+                    polig = row_ayer['Polígono']
+                    df_hoy_poligono = df_hoy[df_hoy['Polígono'] == polig]
+                    v_hoy = df_hoy_poligono[mes].iloc[0]
+                    df_ayer_poligono = df_ayer[df_ayer['Polígono'] == polig]
+                    v_ayer = df_ayer_poligono[mes].iloc[0]
+                    v_hoy = int(v_hoy)
+                    v_ayer = int(v_ayer)
+                    existe_valor = (df2['dia'] == ayer_fecha).any()
+                    if v_ayer != v_hoy:
+                        if existe_valor:
+                            df2.loc[df2['dia'] == ayer_fecha, polig] = 1.0
                         else:
-                            if existe_valor:
-                                df2.loc[df2['dia'] == ayer_fecha, polig] = '0'
-                            else:
-                                nueva_fila = {'dia': ayer_fecha, polig: '0'}
-                                df2.loc[len(df2)] = nueva_fila
+                            nueva_fila = {'dia': ayer_fecha, polig: 1.0}
+                            df2.loc[len(df2)] = nueva_fila
+                    else:
+                        if existe_valor:
+                            df2.loc[df2['dia'] == ayer_fecha, polig] = 0.0
+                        else:
+                            nueva_fila = {'dia': ayer_fecha, polig: 0.0}
+                            df2.loc[len(df2)] = nueva_fila
 
         file_path = os.path.join(script_dir,'data','abiertocerrado_scrap.csv')
         df2.to_csv(file_path, index=False)

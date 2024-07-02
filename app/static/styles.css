@@ -271,3 +271,8 @@ nav ul li a.active {
     height: 25px;
 }
 
+.mt-5 img {
+    width: 100%;
+    height: auto;
+}
+
