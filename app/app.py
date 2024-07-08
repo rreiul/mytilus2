@@ -37,4 +37,4 @@ def index():
     return render_template('index.html', zona=zona, rango=rango, porcentaje=porcentaje, opciones=opciones, imagen1_url=imagen1_url) #imagen2_url=imagen2_url)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
